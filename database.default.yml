@@ -28,12 +28,6 @@
 #
 production:
   dsn: <%= ENV['DATABASE_URL'] %>
-  # adapter:  <%= ENV['DATABASE_ADAPTER'] %>
-  # database: <%= ENV['DATABASE_NAME'] %>
-  # username: <%= ENV['DATABASE_USER'] %>
-  # password: <%= ENV['DATABASE_PASSWORD'] %>
-  # host:     <%= ENV['DATABASE_HOST'] %>
-  # encoding: UTF-8-MB4
 development:
   dsn: sqlite3://<%= root %>/db/development.sqlite3
 test:
