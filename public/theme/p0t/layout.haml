@@ -27,10 +27,10 @@
         #bubble
           %h1= link_to @site.title, '/'
         %ul#nav
-          %li= link_to 'Profile', 'http://komagata.org/'
-          %li= link_to 'Twitter', 'http://komagata.org/'
-          %li= link_to 'Github', 'http://komagata.org/'
-          %li= link_to 'Facebook', 'http://komagata.org/'
+          %li= link_to 'Profile', 'http://komagata.makesthis.com/', target: '_blank'
+          %li= link_to 'Twitter', 'https://twitter.com/komagata', target: '_blank'
+          %li= link_to 'Github', 'https://twitter.com/komagata', target: '_blank'
+          %li= link_to 'Facebook', 'http://www.facebook.com/komagata1111', target: '_blank'
           %li
             %form#search(action="/search/" method="get")
               %input(type="text" name="query")
@@ -42,5 +42,5 @@
       #footer
         .poweredby
           powered by
-          = link_to 'Lokka', 'http://lokka.org/'
+          = link_to 'Lokka', 'http://lokka.org/', target: '_blank'
       = footer

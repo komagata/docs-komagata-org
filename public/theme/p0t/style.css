@@ -2,17 +2,18 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #333;
+  color: black;
   text-align: center;
+  background: #b68299;
 }
 
 a {
-  color: #00ADEF;
+  color: #61b816;
   text-decoration: none;
 }
 
 h1 a {
-  color: white;
+  color: #b68299;
 }
 
 img {
@@ -38,16 +39,16 @@ select {
 #bubble {
   float: left;
   margin: 0px 20px 0px 70px;
-  border-bottom: 10px solid #00adef;
+  border-bottom: 10px solid #61b816;
   border-left: 10px solid transparent;
-  -border-left-color: white;
+  -border-left-color: #61b816;
 }
 
 #bubble h1 {
   display: block;
   padding: 14px 25px;
   margin: 0 0 -25px;
-  background: #00adef;
+  background: #61b816;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   color: #000;
@@ -89,7 +90,7 @@ code {
 blockquote {
   margin: 0;
   padding: 0.5em;
-  background-color: #eee;
+  background: white;
 }
 
 #wrapper {
@@ -131,7 +132,7 @@ blockquote {
 
 #search button {
   border: none;
-  background: #00adef;
+  background: #61b816;
   padding: 0.5em 1em;
   color: #fff;
 }
