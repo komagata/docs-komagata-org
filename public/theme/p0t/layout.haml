@@ -19,22 +19,26 @@
     %link(rel="stylesheet" type="text/css" href="#{@theme.path}/google-code-prettify/prettify.css")
     %script(type="text/javascript" src="#{@theme.path}/google-code-prettify/prettify.js")
     :javascript
-      $(function(){ prettyPrint(); });
+      $(function(){
+        prettyPrint();
+      });
     = header
   %body
+    #nav
+      %ul
+        %li= link_to 'Profile', 'http://komagata.makesthis.com/', target: '_blank'
+        %li= link_to 'Twitter', 'https://twitter.com/komagata', target: '_blank'
+        %li= link_to 'Github', 'https://twitter.com/komagata', target: '_blank'
+        %li= link_to 'Facebook', 'http://www.facebook.com/komagata1111', target: '_blank'
+        %li
+          %form#search(action="/search/" method="get")
+            %input(type="text" name="query")
+            %button(type="submit") Search
     #wrapper
       #header.clearfix
+        %img#icon(src="#{@theme.path}/images/movable_face.gif")
         #bubble
           %h1= link_to @site.title, '/'
-        %ul#nav
-          %li= link_to 'Profile', 'http://komagata.makesthis.com/', target: '_blank'
-          %li= link_to 'Twitter', 'https://twitter.com/komagata', target: '_blank'
-          %li= link_to 'Github', 'https://twitter.com/komagata', target: '_blank'
-          %li= link_to 'Facebook', 'http://www.facebook.com/komagata1111', target: '_blank'
-          %li
-            %form#search(action="/search/" method="get")
-              %input(type="text" name="query")
-              %button(type="submit") Search
       - unless index? or entry?
         #bread_crumb= bread_crumb
       #content.clearfix
