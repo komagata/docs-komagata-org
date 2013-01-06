@@ -16,6 +16,10 @@ h1 a {
   color: #b68299;
 }
 
+#icon {
+  float: left;
+}
+
 img {
   border: 0;
 }
@@ -38,7 +42,7 @@ select {
 
 #bubble {
   float: left;
-  margin: 0px 20px 0px 70px;
+  margin-top: 10px;
   border-bottom: 10px solid #61b816;
   border-left: 10px solid transparent;
   -border-left-color: #61b816;
@@ -94,14 +98,13 @@ blockquote {
 }
 
 #wrapper {
-  margin: 10px auto;
+  margin: auto;
   text-align: left;
   max-width: 800px;
   padding: 0.5em;
 }
 
 #header {
-  background: url(images/good_face.png) no-repeat;
   text-align: left;
   margin-bottom: 1em;
 }
@@ -111,34 +114,49 @@ blockquote {
 }
 
 #nav {
-  float: right;
+  text-align: center;
+  margin-bottom: 30px;
+  background: #61b816;
+  padding: 20px 0px;
+  font-weight: bold;
+}
+
+#nav ul {
+  font-size: 22px;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: auto;
 }
 
 #nav li {
-  float: left;
-  margin-right: 0.4em;
+  display: inline;
+  margin: 20px 20px;
+  font-size: 30px;
 }
 
 #nav li a {
-  padding: 4px 3px;
+  color: black;
 }
 
 #search {
-  margin-left: 1em;
+  display: inline;
+}
+
+#search form {
+  display: inline;
 }
 
 #search button {
   border: none;
-  background: #61b816;
-  padding: 0.5em 1em;
-  color: #fff;
+  background: #b68299;
+  font-size: 24px;
+  padding: 10px;
 }
 
 #search input {
-  width: 100px;
+  border: solid 0px;
+  font-size: 24px;
+  width: 120px;
+  padding: 10px;
 }
 
 #bread_crumb {
