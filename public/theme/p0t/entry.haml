@@ -1,3 +1,8 @@
+- if @comment.errors
+  = @comment.errors.to_h
+  %ul
+    - @comment.errors.to_h.each do |name, error|
+      %li= error.first
 = partial :article, :locals => {:post => @entry}
 %ul.comments
   - @entry.comments.reverse.each do |comment|
