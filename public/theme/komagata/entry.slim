@@ -7,7 +7,7 @@
 ul.comments
   - @entry.comments.reverse.each do |comment|
     li.comment[id="comment-#{comment.id}"]
-      .body= hbr comment.body
+      .body== hbr comment.body
       .footer
         .name= link_to comment.name, comment.homepage, if: comment.homepage.present?
         .created_at= l comment.created_at.to_time
