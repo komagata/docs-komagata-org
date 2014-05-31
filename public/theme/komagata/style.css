@@ -202,6 +202,10 @@ blockquote {
   line-height: 140%;
 }
 
+.article .body img {
+  max-width: 800px;
+}
+
 .article .footer {
   padding: 0;
   text-align: right;
