@@ -154,7 +154,7 @@ blockquote {
 }
 
 .article .body img {
-  max-width: 800px;
+  max-width: 790px;
 }
 
 @media screen and (max-width: 767px) {
@@ -164,7 +164,7 @@ blockquote {
   }
 
   .article .body img {
-    width: 90%;
+    max-width: 750px
   }
 }
 
