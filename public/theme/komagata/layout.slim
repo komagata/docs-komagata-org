@@ -29,8 +29,7 @@ html
     #wrapper
       #header.clearfix
         img#icon src="#{@theme.path}/images/movable_face.gif"
-        #bubble
-          h1= link_to @site.title, '/'
+        h1= link_to @site.title, '/'
       - unless index? or entry?
         #bread_crumb== bread_crumb
       #content.clearfix
