@@ -159,6 +159,7 @@ blockquote {
 
 @media screen and (max-width: 767px) {
   #nav li {
+    display: block;
     font-size: 12px
   }
 
