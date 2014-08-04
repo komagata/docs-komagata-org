@@ -164,7 +164,7 @@ blockquote {
   }
 
   .article .body img {
-    max-width: 750px
+    width: 85%;
   }
 }
 
