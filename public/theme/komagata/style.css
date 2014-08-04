@@ -107,6 +107,7 @@ blockquote {
 #header {
   text-align: left;
   margin-bottom: 1em;
+  width: 100%;
 }
 
 #header a {
@@ -204,6 +205,7 @@ blockquote {
 
 .article .body img {
   max-width: 800px;
+  width: 100%;
 }
 
 .article .footer {
