@@ -205,7 +205,12 @@ blockquote {
 
 .article .body img {
   max-width: 800px;
-  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .article .body img {
+    width: 100%;
+  }
 }
 
 .article .footer {
