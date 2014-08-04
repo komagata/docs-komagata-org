@@ -207,6 +207,10 @@ blockquote {
 }
 
 @media screen and (max-width: 767px) {
+  #nav li {
+    font-size: 12px
+  }
+
   .article .body img {
     width: 100%;
   }
