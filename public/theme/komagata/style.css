@@ -115,23 +115,22 @@ blockquote {
 }
 
 #nav {
-  text-align: center;
-  margin-bottom: 30px;
   background: #61b816;
-  padding: 20px 0px;
+  padding: 10px 0px 10px 0px;
   font-weight: bold;
 }
 
 #nav ul {
-  font-size: 22px;
+  font-size: 14px;
   list-style: none;
-  margin: auto;
+  margin: 0;
+  padding: 0;
 }
 
 #nav li {
   display: inline;
-  margin: 20px 20px;
-  font-size: 30px;
+  margin: 10px 10px;
+  font-size: 20px;
 }
 
 #nav li a {
@@ -149,15 +148,15 @@ blockquote {
 #search button {
   border: none;
   background: #b68299;
-  font-size: 24px;
-  padding: 10px;
+  font-size: 14px;
+  padding: 6px;
 }
 
 #search input {
   border: solid 0px;
-  font-size: 24px;
-  width: 120px;
-  padding: 10px;
+  font-size: 14px;
+  width: 100px;
+  padding: 6px;
 }
 
 #bread_crumb {
