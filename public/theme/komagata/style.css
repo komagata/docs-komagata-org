@@ -2,18 +2,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: black;
   text-align: center;
-  background: #b68299;
 }
 
 a {
-  color: #61b816;
   text-decoration: none;
 }
 
 h1 a {
-  color: #b68299;
 }
 
 #icon {
@@ -29,40 +25,9 @@ form {
   padding: 0;
 }
 
-input,
-textarea,
-select {
-    border-top: 1px solid #999;
-    border-left: 1px solid #999;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background: #fafafa;
-    padding: 4px 3px;
-}
-
-#bubble {
-  float: left;
-  margin-top: 10px;
-  border-bottom: 10px solid #61b816;
-  border-left: 10px solid transparent;
-  -border-left-color: #61b816;
-}
-
-#bubble h1 {
-  display: block;
-  padding: 14px 25px;
-  margin: 0 0 -25px;
-  background: #61b816;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  color: #000;
-  -position: relative;
-}
-
 h2 {
   font-size: 1.3em;
   font-weight: bold;
-  color: black;
   margin: 0 0 0.6em 0;
 }
 
@@ -78,8 +43,6 @@ pre {
   max-width: 790px;
   margin: 0.5em 0em;
   padding: 0.5em;
-  background-color: #000;
-  color: #fff;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
@@ -94,7 +57,7 @@ code {
 blockquote {
   margin: 0;
   padding: 0.5em;
-  background: white;
+  background: gray;
 }
 
 #wrapper {
@@ -115,7 +78,6 @@ blockquote {
 }
 
 #nav {
-  background: #61b816;
   padding: 10px 0px 10px 0px;
   font-weight: bold;
 }
@@ -133,10 +95,6 @@ blockquote {
   font-size: 20px;
 }
 
-#nav li a {
-  color: black;
-}
-
 #search {
   display: inline;
 }
@@ -146,17 +104,10 @@ blockquote {
 }
 
 #search button {
-  border: none;
-  background: #b68299;
-  font-size: 14px;
-  padding: 6px;
 }
 
 #search input {
-  border: solid 0px;
-  font-size: 14px;
   width: 100px;
-  padding: 6px;
 }
 
 #bread_crumb {
@@ -285,11 +236,9 @@ label.checkbox {
 input.text_field {
   font-size: 14px;
   padding: 5px;
-  border: 1px solid #999999;
 }
 input.text_field_small {
   font-size: 14px;
-  border: 1px solid #999999;
 }
 input.text_field_mini {
   font-size: 22px;
@@ -297,7 +246,6 @@ input.text_field_mini {
 }
 
 textarea {
-  border: 1px solid #999999;
   padding: 5px;
 }
 textarea.text_area {
@@ -383,8 +331,4 @@ h4.comment {
 }
 
 .button {
-  border: none;
-  background: #00adef;
-  padding: 0.5em 1em;
-  color: #fff;
 }
