@@ -113,7 +113,7 @@ GEM
     padrino-helpers (0.11.2)
       i18n (~> 0.6)
       padrino-core (= 0.11.2)
-    rack (1.5.2)
+    rack (1.6.0)
     rack-flash (0.1.2)
       rack
     rack-protection (1.5.1)

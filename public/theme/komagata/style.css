@@ -40,6 +40,8 @@ li {
 }
 
 pre {
+  color: white;
+  background: black;
   max-width: 790px;
   margin: 0.5em 0em;
   padding: 0.5em;
