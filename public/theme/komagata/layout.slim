@@ -32,7 +32,7 @@ html
         h1= link_to @site.title, '/'
       - unless index? or entry?
         #bread_crumb== bread_crumb
-      #content.clearfix
+      #content
         == yield
       #footer
         .poweredby
