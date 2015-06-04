@@ -12,16 +12,21 @@ html
     meta name="google-site-verification" content="bjMN32QSRWUy3_FNCPWKTSGKcqywy0mBltNBgqW-sgE"
     link rel="shortcut icon" href="#{@theme.path}/favicon.ico"
     link title="#{@site.title}" rel="alternate" href="/index.atom" type="application/atom+xml"
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css"
     link rel="stylesheet" href="#{@theme.path}/style.css" type="text/css"
     script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"
     = header
   body
     #nav
       ul
-        li= link_to 'Profile', 'http://komagata.makesthis.com/', target: '_blank'
-        li= link_to 'Twitter', 'https://twitter.com/komagata', target: '_blank'
-        li= link_to 'Github', 'https://github.com/komagata', target: '_blank'
-        li= link_to 'Facebook', 'http://www.facebook.com/komagata1111', target: '_blank'
+        li
+          | <a href="http://komagata.makesthis.com" target="_blank"><i class="fa fa-smile-o"></i></a>
+        li
+          | <a href="https://twitter.com/komagata" target="_blank"><i class="fa fa-twitter"></i></a>
+        li
+          | <a href="https://github.com/komagata" target="_blank"><i class="fa fa-github-alt"></i></a>
+        li
+          | <a href="https://www.facebook.com/komagata1111" target="_blank"><i class="fa fa-facebook-official"></i></a>
         li
           form#search action="/search/" method="get"
             input type="text" name="query"

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '1.9.3'
 gem 'bundler'
 gem 'rack'
 gem 'rack-flash', '~> 0.1.2'

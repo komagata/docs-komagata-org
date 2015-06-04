@@ -237,3 +237,6 @@ DEPENDENCIES
   tux
   wikicloth (= 0.7.1)
   yard-sinatra (= 1.0.0)
+
+BUNDLED WITH
+   1.10.3
