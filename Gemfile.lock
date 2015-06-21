@@ -239,4 +239,4 @@ DEPENDENCIES
   yard-sinatra (= 1.0.0)
 
 BUNDLED WITH
-   1.10.3
+   1.10.4
