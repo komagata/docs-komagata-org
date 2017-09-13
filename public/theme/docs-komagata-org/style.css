@@ -64,6 +64,9 @@ code {
   font-size: 14px;
   padding: 2px 5px;
   margin: 0px 3px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 pre > code {
