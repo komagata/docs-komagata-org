@@ -43,6 +43,10 @@ li {
   margin: 5px 0;
 }
 
+code, pre {
+  font-family: "Consolas", "Courier New", monospace;
+}
+
 pre {
   font-size: 12px;
   color: black;
@@ -58,9 +62,7 @@ pre {
 }
 
 code {
-  background: #eee;
-  font-family: "Consolas", "Courier New", monospace;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 blockquote {
