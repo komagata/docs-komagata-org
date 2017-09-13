@@ -214,17 +214,14 @@ blockquote {
 }
 
 .article .footer .created_at {
-  display: inline;
   margin-left: 0.5em;
 }
 
 .article .footer .comment {
-  display: inline;
   margin-left: 0.5em;
 }
 
 .article .footer .edit {
-  display: inline;
   margin-left: 0.5em;
 }
 
