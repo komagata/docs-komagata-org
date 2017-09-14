@@ -56,7 +56,7 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow: auto;
-  font-family: "Consolas", "Courier New", monospace;
+  font-family: Monaco, "Consolas", "Courier New", monospace;
 }
 
 code {
@@ -67,7 +67,7 @@ code {
   overflow: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
-  font-family: "Consolas", "Courier New", monospace;
+  font-family: Monaco, "Consolas", "Courier New", monospace;
 }
 
 pre > code {
