@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/datamapper/dm-core.git
-  revision: 03a6425d1616027dd8371ca4f5714c333ba7e789
-  branch: release-1.2
+  remote: https://github.com/lokka/dm-pagination
+  revision: dc67daa8a6b335af94c341277fd5a19815ce5083
   specs:
     dm-pager (1.2.1)
       dm-aggregates (~> 1.2.0)
@@ -149,6 +148,8 @@ GEM
       rack
     rack-protection (1.5.5)
       rack
+    rack-ssl (1.4.1)
+      rack
     rack-test (0.6.1)
       rack (>= 1.0)
     rainbow (3.0.0)
@@ -265,6 +266,7 @@ DEPENDENCIES
   padrino-helpers (~> 0.14.1.1)
   rack
   rack-flash (~> 0.1.2)
+  rack-ssl
   rack-test (= 0.6.1)
   rake (~> 12.3)
   redcarpet
@@ -286,4 +288,4 @@ RUBY VERSION
    ruby 2.7.0p0
 
 BUNDLED WITH
-   2.1.2
+   2.1.4

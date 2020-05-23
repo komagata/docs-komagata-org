@@ -41,6 +41,7 @@ gem 'slim', '~> 3.0.7'
 gem 'tilt', '~> 2.0'
 gem 'tux'
 gem 'yard-sinatra', '1.0.0'
+gem 'rack-ssl'
 
 Dir['public/plugin/lokka-*/Gemfile'].each {|path| load(path) }
 
