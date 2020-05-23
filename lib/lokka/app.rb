@@ -19,7 +19,7 @@ module Lokka
       set public_folder: proc { File.join(root, 'public') }
       set views: proc { public_folder }
       set theme: proc { File.join(public_folder, 'theme') }
-      set supported_templates: %w[erb haml :slim erubis]
+      set supported_templates: %w[erb haml slim erubis]
       set supported_stylesheet_templates: %w[scss sass]
       set supported_javascript_templates: %w[coffee]
       set :scss, Compass.sass_engine_options
