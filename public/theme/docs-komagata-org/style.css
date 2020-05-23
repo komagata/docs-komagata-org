@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Monaco, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-family: Roboto, YakuHanJPs, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "游ゴシック体", "Yu Gothic", YuGothic, sans-serif;
   text-align: center;
 }
 
@@ -13,8 +14,9 @@ h1 a {
 }
 
 h1 {
-  font-size: 1.6em;
-  margin: 1.45em 0;
+  font-size: 27.5px;
+  font-weight: bold;
+  margin: 34px 0px 0px 130px;
 }
 
 #icon {
@@ -158,8 +160,9 @@ blockquote {
 }
 
 .article {
-  font-size: 15px;
-  margin: 0px 0px 30px 0px;
+  font-size: 16px;
+  line-height: 1.5625;
+  margin: 0px 0px 25px 0px;
 }
 
 .article .title {
