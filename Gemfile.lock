@@ -151,7 +151,7 @@ GEM
     rack (2.2.4)
     rack-flash (0.1.2)
       rack
-    rack-protection (3.0.2)
+    rack-protection (3.0.4)
       rack
     rack-ssl (1.4.1)
       rack
@@ -196,16 +196,16 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sinatra (3.0.2)
+    sinatra (3.0.4)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.0.2)
+      rack-protection (= 3.0.4)
       tilt (~> 2.0)
-    sinatra-contrib (3.0.2)
+    sinatra-contrib (3.0.4)
       multi_json
       mustermann (~> 3.0)
-      rack-protection (= 3.0.2)
-      sinatra (= 3.0.2)
+      rack-protection (= 3.0.4)
+      sinatra (= 3.0.4)
       tilt (~> 2.0)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
@@ -282,7 +282,7 @@ DEPENDENCIES
   rubocop
   sass
   simplecov
-  sinatra (~> 3.0.2)
+  sinatra (~> 3.0.4)
   sinatra-contrib (~> 3.0.2)
   sinatra-flash (~> 0.3.0)
   slim (~> 3.0.7)
