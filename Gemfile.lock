@@ -148,7 +148,7 @@ GEM
     powerpack (0.1.1)
     public_suffix (5.0.0)
     racc (1.6.0)
-    rack (2.2.4)
+    rack (2.2.6.4)
     rack-flash (0.1.2)
       rack
     rack-protection (3.0.2)
