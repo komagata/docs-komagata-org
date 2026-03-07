@@ -20,16 +20,16 @@ describe 'App' do
           create(:newyear_post)
         end
 
-        after { Post.destroy }
+        after { Post.destroy_all }
 
         it 'entries should be sorted by created_at in descending' do
-          subject.index(/First expect(Post/)).to be > subject.index(/Test Post \d+/)
+          expect(subject.index(/First Post/)).to be > subject.index(/Test Post \d+/)
         end
       end
 
       context 'number of posts displayed' do
         before { 11.times { create(:post) } }
-        after { Post.destroy }
+        after { Post.destroy_all }
 
         let(:regexp) do
           %r{<h2 class="title"><a href=".*\/[^"]*">Test Post.*<\/a><\/h2>}
@@ -52,7 +52,7 @@ describe 'App' do
 
     context '/:id' do
       before { @post = create(:post) }
-      after { Post.destroy }
+      after { Post.destroy_all }
       context 'GET' do
         subject do
           get "/#{@post.id}"
@@ -63,7 +63,7 @@ describe 'App' do
       end
 
       context 'POST' do
-        before { Comment.destroy }
+        before { Comment.destroy_all }
 
         let(:params) do
           {
@@ -85,7 +85,7 @@ describe 'App' do
 
     context '/tags/lokka/' do
       before { create(:tag, name: 'lokka') }
-      after { Tag.destroy }
+      after { Tag.destroy_all }
 
       it 'should show tag index' do
         get '/tags/lokka/'
@@ -100,7 +100,7 @@ describe 'App' do
       end
 
       after do
-        Category.destroy
+        Category.destroy_all
       end
 
       it 'should show category index' do
@@ -117,7 +117,7 @@ describe 'App' do
     describe 'a draft post' do
       before do
         create(:draft_post_with_tag_and_category)
-        @post = Post.first(draft: true)
+        @post = Post.find_by(draft: true)
         expect(@post).not_to be_nil # gauntlet
         expect(@post.tag_list).not_to be_empty
         @tag_name = @post.tag_list.first
@@ -125,8 +125,8 @@ describe 'App' do
       end
 
       after do
-        Post.destroy
-        Category.destroy
+        Post.destroy_all
+        Category.destroy_all
       end
 
       it 'the entry page should return 404' do
@@ -164,12 +164,12 @@ describe 'App' do
         create(:later_post_with_slug)
         Option.permalink_enabled = true
         Option.permalink_format = '/%year%/%monthnum%/%day%/%slug%'
-        Comment.destroy
+        Comment.destroy_all
       end
 
       after do
         Option.permalink_enabled = false
-        Entry.destroy
+        Entry.destroy_all
       end
 
       it 'an entry can be accessed by custom permalink' do
@@ -244,7 +244,7 @@ describe 'App' do
 
     context 'with continue reading' do
       before { create(:post_with_more) }
-      after { Post.destroy }
+      after { Post.destroy_all }
       describe 'in entries index' do
         it 'should hide texts after <!--more-->' do
           regexp = %r{<p>a<\/p>\n\n<a href="\/[^"]*">Continue reading\.\.\.<\/a>\n*[ \t]+<\/div>}
@@ -272,8 +272,8 @@ describe 'App' do
     end
 
     after do
-      Post.destroy
-      Tag.destroy
+      Post.destroy_all
+      Tag.destroy_all
     end
 
     it 'should show lokka tag archive' do

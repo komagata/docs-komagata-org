@@ -11,7 +11,7 @@ shared_context 'admin login' do
     follow_redirect!
   end
 
-  after { User.destroy }
+  after { User.destroy_all }
 end
 
 shared_examples_for 'a not found page' do

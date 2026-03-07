@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe '/admin/categories' do
   include_context 'admin login'
   before { @category = create(:category) }
-  after { Category.destroy }
+  after { Category.destroy_all }
 
   context 'GET /admin/categories' do
     it 'should show index' do
@@ -74,7 +74,7 @@ describe '/admin/categories' do
   end
 
   context 'when the category does not exist' do
-    before { Category.destroy }
+    before { Category.destroy_all }
 
     context 'GET' do
       before { get '/admin/categories/9999/edit' }

@@ -31,7 +31,7 @@ describe '/admin/users' do
       }
       post '/admin/users', user: user
       expect(last_response).to be_redirect
-      User.first(name: 'lokka expect(tarou')).not_to be_nil
+      expect(User.find_by(name: 'lokka tarou')).not_to be_nil
     end
 
     it 'should not create a user when two password does not match' do
@@ -43,7 +43,7 @@ describe '/admin/users' do
       }
       post '/admin/users', user: user
       expect(last_response).to be_ok
-      User.first(name: 'lokka expect(tarou')).to be_nil
+      expect(User.find_by(name: 'lokka tarou')).to be_nil
       expect(last_response.body).to match('<form')
     end
   end
@@ -60,7 +60,7 @@ describe '/admin/users' do
     it 'should update the name' do
       put "/admin/users/#{@user.id}", user: { name: 'newbie' }
       expect(last_response).to be_redirect
-      expect(User.get(@user.id).name).to eq('newbie')
+      expect(User.find_by(id: @user.id).name).to eq('newbie')
     end
   end
 
@@ -70,18 +70,18 @@ describe '/admin/users' do
     it 'should delete the another user' do
       delete "/admin/users/#{@another_user.id}"
       expect(last_response).to be_redirect
-      expect(User.get(@another_user.id)).to be_nil
+      expect(User.find_by(id: @another_user.id)).to be_nil
     end
 
     it 'should not delete the current user' do
       delete "/admin/users/#{@user.id}"
       expect(last_response).to be_redirect
-      expect(User.get(@user.id)).not_to be_nil
+      expect(User.find_by(id: @user.id)).not_to be_nil
     end
   end
 
   context 'when the user does not exist' do
-    before { User.destroy }
+    before { User.destroy_all }
 
     context 'GET' do
       before { get '/admin/users/9999/edit' }

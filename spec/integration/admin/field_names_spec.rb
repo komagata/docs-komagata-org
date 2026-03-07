@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe '/admin/field_names' do
   include_context 'admin login'
   before { @field_name = create(:field_name) }
-  after { FieldName.destroy }
+  after { FieldName.destroy_all }
 
   context 'GET /admin/field_names' do
     it 'should show index' do
@@ -27,21 +27,21 @@ describe '/admin/field_names' do
     it 'should create a new field_name' do
       post '/admin/field_names', field_name: { name: 'new field' }
       expect(last_response).to be_redirect
-      FieldName.first(name: 'new expect(field')).not_to be_nil
+      expect(FieldName.find_by(name: 'new field')).not_to be_nil
     end
   end
 
   context 'DELETE /admin/field_names/:id' do
     it 'should delete the field_name' do
-      expect(FieldName.get(@field_name.id)).not_to be_nil # gauntret
+      expect(FieldName.find_by(id: @field_name.id)).not_to be_nil # guard
       delete "/admin/field_names/#{@field_name.id}"
       expect(last_response).to be_redirect
-      expect(FieldName.get(@field_name.id)).to be_nil
+      expect(FieldName.find_by(id: @field_name.id)).to be_nil
     end
   end
 
   context 'when the field name does not exist' do
-    before { FieldName.destroy }
+    before { FieldName.destroy_all }
 
     context 'DELETE' do
       before { delete '/admin/field_names/9999' }

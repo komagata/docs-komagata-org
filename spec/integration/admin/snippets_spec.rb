@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe '/admin/snippets' do
   include_context 'admin login'
   before { @snippet = create(:snippet) }
-  after { Snippet.destroy }
+  after { Snippet.destroy_all }
 
   context 'GET /admin/snippets' do
     it 'should show index' do
@@ -27,7 +27,7 @@ describe '/admin/snippets' do
       sample = attributes_for(:snippet, name: 'Created Snippet')
       post '/admin/snippets', snippet: sample
       expect(last_response).to be_redirect
-      Snippet('Created expect(Snippet')).not_to be_nil
+      expect(Snippet('Created Snippet')).not_to be_nil
     end
   end
 
@@ -43,7 +43,7 @@ describe '/admin/snippets' do
     it 'should update the snippet"s body ' do
       put "/admin/snippets/#{@snippet.id}", snippet: { body: 'updated' }
       expect(last_response).to be_redirect
-      expect(Snippet.get(@snippet.id).body).to eq('updated')
+      expect(Snippet.find_by(id: @snippet.id).body).to eq('updated')
     end
   end
 
@@ -51,12 +51,12 @@ describe '/admin/snippets' do
     it 'should delete the snippet' do
       delete "/admin/snippets/#{@snippet.id}"
       expect(last_response).to be_redirect
-      expect(Snippet.get(@snippet.id)).to be_nil
+      expect(Snippet.find_by(id: @snippet.id)).to be_nil
     end
   end
 
   context 'when the snippet does not exist' do
-    before { Snippet.destroy }
+    before { Snippet.destroy_all }
 
     context 'GET' do
       before { get '/admin/snippets/9999/edit' }

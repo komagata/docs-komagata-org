@@ -12,8 +12,8 @@ describe '/admin/comments' do
   end
 
   after do
-    Comment.destroy
-    Post.destroy
+    Comment.destroy_all
+    Post.destroy_all
   end
 
   context 'GET /admin/comments' do
@@ -33,7 +33,7 @@ describe '/admin/comments' do
 
   context 'POST /admin/comments' do
     it 'should create a new comment' do
-      Comment.destroy
+      Comment.destroy_all
       sample = attributes_for(:comment, entry_id: @post.id)
       post '/admin/comments', comment: sample
       expect(last_response).to be_redirect
@@ -74,7 +74,7 @@ describe '/admin/comments' do
   end
 
   context 'when the comment does not exist' do
-    before { Comment.destroy }
+    before { Comment.destroy_all }
 
     context 'GET' do
       before { get '/admin/comments/9999/edit' }

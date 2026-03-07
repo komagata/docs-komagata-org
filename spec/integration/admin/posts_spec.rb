@@ -10,7 +10,7 @@ describe '/admin/posts' do
     create(:draft_post)
   end
 
-  after { Post.destroy }
+  after { Post.destroy_all }
 
   context 'with no option' do
     it 'should show all posts' do
@@ -81,7 +81,7 @@ describe '/admin/posts' do
   end
 
   context 'when the post does not exist' do
-    before { Post.destroy }
+    before { Post.destroy_all }
 
     context 'GET' do
       before { get '/admin/posts/9999/edit' }

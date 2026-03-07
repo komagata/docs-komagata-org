@@ -24,7 +24,7 @@ require 'database_cleaner/active_record'
 require 'factories'
 
 set :environment, :test
-Lokka::Database.new.connect
+Lokka::Database.new.connect.migrate
 
 module LokkaTestMethods
   def app

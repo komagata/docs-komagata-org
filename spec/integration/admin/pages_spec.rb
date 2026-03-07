@@ -10,7 +10,7 @@ describe '/admin/pages' do
     create(:draft_page)
   end
 
-  after { Page.destroy }
+  after { Page.destroy_all }
 
   context 'with no option' do
     it 'should show all pages' do
@@ -69,7 +69,7 @@ describe '/admin/pages' do
   end
 
   context 'when the page does not exist' do
-    before { Page.destroy }
+    before { Page.destroy_all }
 
     context 'GET' do
       before { get '/admin/pages/9999/edit' }
