@@ -138,15 +138,21 @@ module Lokka
         columns = filtered.keys
         values = filtered.values
 
-        placeholders = values.map { '?' }.join(', ')
+        # Use $1, $2, ... for PostgreSQL, ? for others
+        placeholders = if conn.adapter_name =~ /PostgreSQL/i
+                         values.map.with_index(1) { |_, i| "$#{i}" }.join(', ')
+                       else
+                         values.map { '?' }.join(', ')
+                       end
         quoted_columns = columns.map { |c| conn.quote_column_name(c) }.join(', ')
 
         sql = "INSERT INTO #{conn.quote_table_name(table)} (#{quoted_columns}) VALUES (#{placeholders})"
 
         begin
-          conn.exec_insert(sql, "#{table} INSERT", values.map.with_index { |v, i|
+          binds = values.map.with_index { |v, i|
             ActiveRecord::Relation::QueryAttribute.new(columns[i], v, ActiveRecord::Type::Value.new)
-          })
+          }
+          conn.exec_insert(sql, "#{table} INSERT", binds)
           count += 1
         rescue ActiveRecord::RecordNotUnique => e
           puts "  ⚠ Duplicate in #{table}, skipping: #{e.message.truncate(80)}"
