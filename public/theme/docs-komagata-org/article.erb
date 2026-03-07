@@ -1,0 +1,16 @@
+<div class="article section">
+  <div class="header">
+    <h2 class="title"><%= link_to post.title, post.link %></h2>
+  </div>
+  <div class="body"><%= post.body %></div>
+  <div class="footer">
+    <%= post.tags_to_html %>
+    <div class="comment">
+      <%= link_to "#{t.comments} (#{post.comments.size})", "#{post.link}#comment_form" %>
+    </div>
+    <div class="created_at"><%= l post.created_at.to_time %></div>
+<% if logged_in? %>
+    <div class="edit"><%= link_to t.edit, post.edit_link %></div>
+<% end %>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<% if entry? %>
+    <title><%= @entry.title %> - <%= @site.title %></title>
+<% else %>
+    <title><%= @site.title %></title>
+<% end %>
+    <meta name="description" content="<%= @site.meta_description %>">
+    <meta name="keywords" content="<%= @site.meta_keywords %>">
+    <meta name="google-site-verification" content="bjMN32QSRWUy3_FNCPWKTSGKcqywy0mBltNBgqW-sgE">
+    <link rel="shortcut icon" href="<%= @theme.path %>/favicon.ico">
+    <link title="<%= @site.title %>" rel="alternate" href="/index.atom" type="application/atom+xml">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%= @theme.path %>/style.css" type="text/css">
+    <%= header %>
+  </head>
+  <body>
+    <div id="nav">
+      <ul>
+        <li><a href="https://twitter.com/komagata" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://github.com/komagata" target="_blank"><i class="fa fa-github-alt"></i></a></li>
+        <li><a href="https://www.facebook.com/komagata1111" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
+        <li>
+          <form id="search" action="/search/" method="get">
+            <input type="text" name="query">
+            <button type="submit">Search</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div id="wrapper">
+      <div id="header" class="clearfix">
+        <img id="icon" src="<%= @theme.path %>/images/shaking-face.gif">
+        <h1><%= link_to @site.title, '/' %></h1>
+      </div>
+<% unless index? or entry? %>
+      <div id="bread_crumb"><%= bread_crumb %></div>
+<% end %>
+      <div id="content">
+        <%= yield %>
+      </div>
+      <div id="footer">
+        <div class="poweredby">
+          powered by <%= link_to 'Lokka', 'http://lokka.org/', target: '_blank' %>
+        </div>
+      </div>
+      <%= footer %>
+    </div>
+  </body>
+</html>

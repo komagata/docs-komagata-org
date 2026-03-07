@@ -1,0 +1,15 @@
+<div class="articles section">
+<% @posts.each do |post| %>
+  <%= partial :article, locals: {post: post} %>
+<% end %>
+  <div class="pager">
+    <ul>
+<% if @posts.current_page > 1 %>
+      <li class="previous"><a href="?page=<%= @posts.current_page - 1 %>"><%= t('newer') %></a></li>
+<% end %>
+<% if @posts.current_page < @posts.total_pages %>
+      <li class="next"><a href="?page=<%= @posts.current_page + 1 %>"><%= t('older') %></a></li>
+<% end %>
+    </ul>
+  </div>
+</div>

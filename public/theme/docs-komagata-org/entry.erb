@@ -1,0 +1,21 @@
+<% if @comment.errors.present? %>
+<%= @comment.errors.to_h %>
+<ul>
+<% @comment.errors.to_h.each do |name, error| %>
+  <li><%= error.first %></li>
+<% end %>
+</ul>
+<% end %>
+<%= partial :article, locals: {post: @entry} %>
+<ul class="comments">
+<% @entry.comments.reverse.each do |comment| %>
+  <li class="comment" id="comment-<%= comment.id %>">
+    <div class="body"><%= hbr comment.body %></div>
+    <div class="footer">
+      <div class="name"><%= comment.homepage.present? ? link_to(comment.name, comment.homepage) : comment.name %></div>
+      <div class="created_at"><%= l comment.created_at.to_time %></div>
+    </div>
+  </li>
+<% end %>
+</ul>
+<%= comment_form %>
