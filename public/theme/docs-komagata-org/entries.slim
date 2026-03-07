@@ -1,4 +1,11 @@
 .articles.section
   - @posts.each do |post|
     == partial :article, locals: {post: post}
-  == @posts.pager.to_html(request.url)
+  .pager
+    ul
+      - if @posts.current_page > 1
+        li.previous
+          a href="?page=#{@posts.current_page - 1}" = t('newer')
+      - if @posts.current_page < @posts.total_pages
+        li.next
+          a href="?page=#{@posts.current_page + 1}" = t('older')
