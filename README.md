@@ -1,6 +1,15 @@
-# Lokka [<img src="https://secure.travis-ci.org/lokka/lokka.png"/>](http://travis-ci.org/lokka/lokka)
+# Lokka
+
+> **Note**
+> Lokka 1.0.0 has migrated from DataMapper to **ActiveRecord**.
+> If you are upgrading from v0.6.0 or earlier, please see the [Migration Guide](https://github.com/lokka/lokka/wiki/Migration-Guide-DataMapper-to-ActiveRecord).
 
 CMS written in Ruby for cloud computing.
+
+## Requirements
+
+- Ruby 3.2 or later
+- SQLite
 
 ## Features
 
@@ -22,30 +31,13 @@ $ bundle exec rackup
 
 View at: http://localhost:9292/
 
-## Deploy to Heroku
+## Deployment
+
+See the [Deployment Guide](https://github.com/lokka/lokka/wiki/Deployment) for production deployment instructions using Kamal.
+
+## Docker (Development)
 
 ```sh
-$ git clone git://github.com/lokka/lokka.git
-$ cd lokka
-$ heroku create
-$ git push heroku master
-$ heroku addons:add heroku-postgresql:hobby-dev
-$ heroku rake db:setup
-$ heroku open
-```
-
-or just copy and paste
-
-```sh
-curl -L http://bit.ly/ROX0lk | bash -s
-```
-
-to your terminal
-
-## Docker
-
-```sh
-$ bin/docker_gemfile
 $ docker-compose build
 $ docker-compose run --rm app bundle exec rake db:setup
 $ docker-compose up
@@ -56,12 +48,12 @@ open http://localhost:9292 on your browser.
 ## Test
 
 ```sh
-rake spec
+rake test
 ```
 
 ## How to make a theme
 
-Make a directory for theme in public/theme and you need to create entries.erb and entry.erb at least. (erb, haml and slim is available.)
+Make a directory for theme in public/theme and you need to create entries.erb and entry.erb at least. (erb and haml are available.)
 
 ### Index page
 
