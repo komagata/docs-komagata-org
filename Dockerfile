@@ -36,6 +36,7 @@ COPY --from=build /app /app
 
 RUN groupadd --system --gid 1000 lokka && \
     useradd lokka --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
+    mkdir -p /app/tmp/pids /app/db && \
     chown -R lokka:lokka /app
 
 USER lokka:lokka

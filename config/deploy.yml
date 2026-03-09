@@ -3,20 +3,17 @@
 
 service: lokka
 
-image: lokka/lokka
+image: komagata/lokka
 
 servers:
   web:
     hosts:
-      - <%= ENV['DEPLOY_HOST'] %>
-    labels:
-      traefik.http.routers.lokka.rule: Host(`<%= ENV['DEPLOY_DOMAIN'] %>`)
-      traefik.http.routers.lokka.entrypoints: websecure
-      traefik.http.routers.lokka.tls.certresolver: letsencrypt
+      - 133.125.55.80
 
 proxy:
   ssl: true
-  host: <%= ENV['DEPLOY_DOMAIN'] %>
+  host: docs.komagata.org
+  app_port: 3000
 
 registry:
   server: ghcr.io
@@ -37,22 +34,10 @@ volumes:
   - "lokka_db:/app/db"
   - "lokka_uploads:/app/public/uploads"
 
-healthcheck:
-  path: /
-  port: 3000
-  interval: 10s
+ssh:
+  user: ubuntu
+  keys:
+    - ~/.ssh/id_ed25519
 
-traefik:
-  options:
-    publish:
-      - "443:443"
-    volume:
-      - "letsencrypt:/letsencrypt"
-  args:
-    entryPoints.web.address: ":80"
-    entryPoints.websecure.address: ":443"
-    entryPoints.web.http.redirections.entryPoint.to: websecure
-    entryPoints.web.http.redirections.entryPoint.scheme: https
-    certificatesResolvers.letsencrypt.acme.email: <%= ENV['LETSENCRYPT_EMAIL'] %>
-    certificatesResolvers.letsencrypt.acme.storage: /letsencrypt/acme.json
-    certificatesResolvers.letsencrypt.acme.httpChallenge.entryPoint: web
+builder:
+  arch: amd64
