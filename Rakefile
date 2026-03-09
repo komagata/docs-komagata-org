@@ -1,6 +1,9 @@
-require './init'
+# frozen_string_literal: true
 
-task default: ['spec:setup', 'db:delete', :spec]
+require './init'
+require 'rake/testtask'
+
+task default: ['test:setup', 'db:delete', :test]
 
 desc 'Migrate the Lokka database'
 task 'db:migrate' do
@@ -28,7 +31,7 @@ task 'db:setup' => %w[db:migrate db:seed]
 
 desc 'Dump data from legacy DataMapper database to db/dm_dump.json (SOURCE=path_or_dsn)'
 task 'db:dump_dm' do
-  source = ENV['SOURCE']
+  source = ENV.fetch('SOURCE', nil)
   unless source
     puts 'Usage: rake db:dump_dm SOURCE=path/to/old/database.sqlite3'
     puts '       rake db:dump_dm SOURCE=postgres://user:pass@host/old_db'
@@ -54,19 +57,15 @@ desc 'Install'
 task install: %w[bundle db:setup]
 
 desc 'set ENV'
-task 'spec:setup' do
+task 'test:setup' do
   ENV['RACK_ENV'] = ENV['LOKKA_ENV'] = 'test'
 end
 
-begin
-  require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(spec: 'spec:setup') do |spec|
-    spec.pattern = 'spec/**/*_spec.rb'
-    spec.rspec_opts = ['-cfd']
-  end
-rescue LoadError => e
-  puts e.message
-  puts e.backtrace
+Rake::TestTask.new(test: 'test:setup') do |t|
+  t.libs << 'test'
+  t.libs << 'lib'
+  t.test_files = FileList['test/**/*_test.rb']
+  t.verbose = true
 end
 
 namespace :admin do
@@ -76,7 +75,7 @@ namespace :admin do
   end
 
   desc 'Build admin js'
-  task :build_js => [:install_deps] do
+  task build_js: [:install_deps] do
     system('cd public/admin && npm run build')
   end
 end

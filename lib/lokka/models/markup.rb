@@ -17,8 +17,8 @@ module Markup
     ['kramdown', 'Markdown (Kramdown)',
      lambda do |text|
        Kramdown::Document.new(text,
-         coderay_line_numbers: nil,
-         coderay_css: :class).to_html
+                              coderay_line_numbers: nil,
+                              coderay_css: :class).to_html
      end],
     ['redcarpet', 'Markdown (redcarpet)',
      lambda do |text|
@@ -31,6 +31,8 @@ module Markup
          superscript: true,
          space_after_headers: true
        ).render(text)
-     end]
+     end],
+    ['redcloth', 'Textile (RedCloth)',
+     ->(text) { RedCloth.new(text).to_html }]
   ]
 end

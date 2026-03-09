@@ -51,6 +51,7 @@ module Lokka
 
     def parse_http(str)
       return [] if str.nil?
+
       locales = str.split(',')
       locales.map! do |locale|
         locale = locale.split ';q='
@@ -109,12 +110,12 @@ require 'active_record'
 require 'sinatra/activerecord'
 require 'kaminari'
 require 'kaminari/activerecord'
+require 'lokka/kaminari_pager_adapter'
 require 'coderay'
 require 'kramdown'
 require 'redcloth'
 require 'redcarpet'
 require 'haml'
-require 'slim'
 require 'builder'
 require 'nokogiri'
 require 'request_store'
