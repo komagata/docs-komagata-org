@@ -629,21 +629,3 @@ label.label {
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0F172A;
-    --card-bg: #1E293B;
-    --text: #F1F5F9;
-    --text-muted: #94A3B8;
-    --border: #334155;
-    --code-bg: #0F172A;
-    --accent-light: rgba(236, 72, 153, 0.15);
-    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
-    --shadow-hover: 0 4px 12px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
-  }
-
-  img {
-    opacity: 0.9;
-  }
-}
