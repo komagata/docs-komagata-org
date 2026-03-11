@@ -26,3 +26,7 @@ database.yml
 # Kamal secrets (keep secrets.example, ignore actual secrets)
 .kamal/secrets
 !.kamal/secrets.example
+
+db/*.sqlite3-shm
+db/*.sqlite3-wal
+tmp/pids/*.pid
