@@ -12,7 +12,7 @@
   --shadow: none;
   --shadow-hover: none;
   --card-border: 1px solid #000000;
-  --radius: 14px;
+  --radius: 8px;
   --radius-sm: 14px;
 }
 
@@ -151,6 +151,7 @@ img {
   aspect-ratio: 1536 / 1024;
   width: 100%;
   position: relative;
+  border: solid 0;
 }
 
 
@@ -208,7 +209,7 @@ h1 a:hover {
 .article .title {
   font-size: 24px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0 0 22px 0;
   line-height: 1.4;
   letter-spacing: -0.02em;
 }
@@ -223,7 +224,7 @@ h1 a:hover {
 }
 
 .article .body {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.85;
   color: var(--text);
   margin-bottom: 24px;
@@ -237,6 +238,10 @@ h1 a:hover {
   border-radius: var(--radius-sm);
   margin: 16px 0;
   filter: grayscale(30%);
+}
+
+.article .body h2 {
+  font-size: 18px
 }
 
 .article .footer {
