@@ -9,10 +9,11 @@
   --text-muted: #6B7280;
   --border: #E5E7EB;
   --code-bg: #F3F4F6;
-  --shadow: 0 2px 8px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
-  --shadow-hover: 0 4px 16px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
-  --radius: 24px;
-  --radius-sm: 12px;
+  --shadow: none;
+  --shadow-hover: none;
+  --card-border: 1px solid #000000;
+  --radius: 14px;
+  --radius-sm: 14px;
 }
 
 * {
@@ -137,61 +138,67 @@ img {
 #header {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: center;
   margin-bottom: 32px;
-  padding: 28px 32px;
+  padding: 0;
   background: var(--card-bg);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border: var(--card-border);
+  background-image: url(/theme/docs-komagata-org/images/hero.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1536 / 1024;
+  width: 100%;
+  position: relative;
 }
+
 
 #header a {
   text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
 
 #icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  float: none;
-  filter: grayscale(100%);
+  display: none;
 }
 
 h1 {
-  font-size: 26px;
-  font-weight: 700;
-  margin: 0;
-  color: var(--text);
-  letter-spacing: -0.02em;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 h1 a {
-  color: var(--text);
+  color: #FFFFFF;
 }
 
 h1 a:hover {
-  color: var(--accent);
+  color: var(--accent-light);
 }
 
 /* Articles */
 .articles {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
 }
 
 .article {
   background: var(--card-bg);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 32px;
-  transition: all 0.3s ease;
+  border: var(--card-border);
+  padding: 16px;
 }
 
 .article:hover {
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
 }
 
 .article .header {
