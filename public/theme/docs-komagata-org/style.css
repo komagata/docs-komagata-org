@@ -144,7 +144,7 @@ img {
   background: var(--card-bg);
   border-radius: var(--radius);
   border: var(--card-border);
-  background-image: url(/theme/docs-komagata-org/images/hero.png);
+  background-image: url(/theme/docs-komagata-org/images/logo.webp);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
