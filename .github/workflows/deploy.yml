@@ -27,7 +27,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 133.125.55.80 >> ~/.ssh/known_hosts
+          ssh-keyscan 133.125.55.80 >> ~/.ssh/known_hosts
+          echo "Host 133.125.55.80" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  UserKnownHostsFile /dev/null" >> ~/.ssh/config
 
       - name: Create Kamal secrets file
         run: |
