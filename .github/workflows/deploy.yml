@@ -29,9 +29,14 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 133.125.55.80 >> ~/.ssh/known_hosts
 
+      - name: Create Kamal secrets file
+        run: |
+          mkdir -p .kamal
+          cat > .kamal/secrets << EOF
+          KAMAL_REGISTRY_USERNAME=komagata
+          KAMAL_REGISTRY_PASSWORD=${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          EOF
+
       - name: Deploy with Kamal
-        env:
-          KAMAL_REGISTRY_USERNAME: komagata
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
         run: kamal deploy
 
