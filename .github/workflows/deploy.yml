@@ -43,6 +43,9 @@ jobs:
           KAMAL_REGISTRY_PASSWORD=${{ secrets.KAMAL_REGISTRY_PASSWORD }}
           EOF
 
+      - name: Update kamal-proxy
+        run: kamal proxy reboot -y
+
       - name: Deploy with Kamal
         run: kamal deploy
 
