@@ -41,6 +41,7 @@ jobs:
           cat > .kamal/secrets << EOF
           KAMAL_REGISTRY_USERNAME=komagata
           KAMAL_REGISTRY_PASSWORD=${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+          SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
           EOF
 
       - name: Update kamal-proxy
