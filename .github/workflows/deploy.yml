@@ -31,6 +31,7 @@ jobs:
 
       - name: Deploy with Kamal
         env:
+          KAMAL_REGISTRY_USERNAME: komagata
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
         run: kamal deploy
 
