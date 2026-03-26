@@ -10,6 +10,11 @@ module Lokka
       app.before '/api/v1/*' do
         content_type :json
 
+        # Bypass CSRF for API (set token header to match session)
+        if session[:csrf]
+          env['HTTP_X_CSRF_TOKEN'] = session[:csrf]
+        end
+
         # /api/v1/token uses name/password auth, not Bearer token
         unless request.path_info == '/api/v1/token' && request.post?
           token = extract_bearer_token
@@ -302,18 +307,23 @@ module Lokka
       end
 
       app.post '/api/v1/token' do
-        name = json_body['name'] || json_body['username']
-        password = json_body['password']
+        begin
+          name = json_body['name'] || json_body['username']
+          password = json_body['password']
 
-        user = User.authenticate(name, password)
-        unless user
-          halt 401, { error: 'Unauthorized', message: 'Invalid credentials' }.to_json
+          user = User.authenticate(name, password)
+          unless user
+            halt 401, { error: 'Unauthorized', message: 'Invalid credentials' }.to_json
+          end
+
+          user.generate_api_token! if user.api_token.blank?
+
+          status 201
+          { token: user.api_token, user: user_json(user) }.to_json
+        rescue => e
+          status 500
+          { error: 'Internal Server Error', message: e.message, backtrace: e.backtrace.first(3) }.to_json
         end
-
-        user.generate_api_token! if user.api_token.blank?
-
-        status 201
-        { token: user.api_token, user: user_json(user) }.to_json
       end
 
       # ---- Site ---------------------------------------------------------------
