@@ -38,12 +38,18 @@ class User < ActiveRecord::Base
   end
 
   def generate_api_token!
+    unless self.class.column_names.include?('api_token')
+      ActiveRecord::Base.connection.add_column :users, :api_token, :string, limit: 64
+      ActiveRecord::Base.connection.add_index :users, :api_token, unique: true
+      self.class.reset_column_information
+    end
     update!(api_token: SecureRandom.hex(32))
     api_token
   end
 
   def self.authenticate_by_token(token)
     return nil if token.blank?
+    return nil unless column_names.include?('api_token')
     find_by(api_token: token)
   end
 

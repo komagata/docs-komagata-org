@@ -38,18 +38,12 @@ module Lokka
       register Sinatra::Flash
       Lokka.load_plugin(self)
       Lokka::Database.new.connect.migrate
-    # Ensure basic records exist
-    Site.create!(title: 'komagataのブログ', theme: 'docs-komagata-org') if Site.count == 0
-    
-    if User.count == 0
-      admin = User.create!(
-        name: 'admin',
-        email: 'admin@komagata.org',
-        password: 'komagata123',
-        password_confirmation: 'komagata123',
-        permission_level: 1
-      )
-      admin.generate_api_token!
+
+    # Ensure api_token column exists (migration may not run on existing DBs)
+    unless User.column_names.include?('api_token')
+      ActiveRecord::Base.connection.add_column :users, :api_token, :string, limit: 64
+      ActiveRecord::Base.connection.add_index :users, :api_token, unique: true
+      User.reset_column_information
     end
     end
 
