@@ -37,6 +37,16 @@ class User < ActiveRecord::Base
     permission_level == 1
   end
 
+  def generate_api_token!
+    update!(api_token: SecureRandom.hex(32))
+    api_token
+  end
+
+  def self.authenticate_by_token(token)
+    return nil if token.blank?
+    find_by(api_token: token)
+  end
+
   def password_require?
     new_record? || !password.blank?
   end
