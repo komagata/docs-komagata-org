@@ -38,6 +38,7 @@ module Lokka
       register Sinatra::Flash
       Lokka.load_plugin(self)
       Lokka::Database.new.connect.migrate
+    load File.join(Lokka.root, 'db', 'seeds.rb') if File.exist?(File.join(Lokka.root, 'db', 'seeds.rb'))
     end
 
     require 'lokka/app/admin'
