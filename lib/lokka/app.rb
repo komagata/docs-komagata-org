@@ -38,8 +38,19 @@ module Lokka
       register Sinatra::Flash
       Lokka.load_plugin(self)
       Lokka::Database.new.connect.migrate
-    load File.join(Lokka.root, 'db', 'seeds.rb') if File.exist?(File.join(Lokka.root, 'db', 'seeds.rb'))
-    load File.join(Lokka.root, 'db', 'create_api_user.rb') if File.exist?(File.join(Lokka.root, 'db', 'create_api_user.rb'))
+    # Ensure basic records exist
+    Site.create!(title: 'komagataのブログ', theme: 'docs-komagata-org') if Site.count == 0
+    
+    if User.count == 0
+      admin = User.create!(
+        name: 'admin',
+        email: 'admin@komagata.org',
+        password: 'komagata123',
+        password_confirmation: 'komagata123',
+        permission_level: 1
+      )
+      admin.generate_api_token!
+    end
     end
 
     require 'lokka/app/admin'
