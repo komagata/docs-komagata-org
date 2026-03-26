@@ -39,7 +39,7 @@ module Lokka
       use RequestStore::Middleware
       register Sinatra::Flash
       Lokka.load_plugin(self)
-      Lokka::Database.new.connect
+      Lokka::Database.new.connect.migrate
     end
 
     require 'lokka/app/admin'
