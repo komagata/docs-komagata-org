@@ -18,12 +18,17 @@ module Lokka
 
     def migrate
       migration_dir = File.join(Lokka.root, 'db', 'migrate')
-      ActiveRecord::Migrator.migrations_paths = [migration_dir]
-      ActiveRecord::MigrationContext.new(migration_dir).migrate
+      ActiveRecord::Base.connection.migration_context.migrations_paths = [migration_dir]
+      ActiveRecord::Base.connection.migration_context.migrate
       self
-    rescue ArgumentError
-      # ActiveRecord 8.0+ changed MigrationContext API
-      ActiveRecord::MigrationContext.new.migrate
+    rescue => e
+      # Fallback: try setting paths globally
+      ActiveRecord::Migrator.migrations_paths = [migration_dir]
+      begin
+        ActiveRecord::MigrationContext.new(migration_dir).migrate
+      rescue ArgumentError
+        ActiveRecord::MigrationContext.new.migrate
+      end
       self
     end
 
