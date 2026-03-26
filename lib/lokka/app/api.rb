@@ -11,12 +11,12 @@ module Lokka
         content_type :json
 
         # /api/v1/token uses name/password auth, not Bearer token
-        pass if request.path_info == '/api/v1/token' && request.post?
-
-        token = extract_bearer_token
-        @api_user = User.authenticate_by_token(token)
-        unless @api_user
-          halt 401, { error: 'Unauthorized', message: 'Invalid or missing API token' }.to_json
+        unless request.path_info == '/api/v1/token' && request.post?
+          token = extract_bearer_token
+          @api_user = User.authenticate_by_token(token)
+          unless @api_user
+            halt 401, { error: 'Unauthorized', message: 'Invalid or missing API token' }.to_json
+          end
         end
       end
 

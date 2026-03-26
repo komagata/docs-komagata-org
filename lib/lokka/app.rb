@@ -10,9 +10,7 @@ module Lokka
       register Sinatra::Reloader
     end
 
-    configure :development, :test do
-      set :host_authorization, { permitted_hosts: [] }
-    end
+    set :host_authorization, { permitted_hosts: [] }
 
     configure do
       enable :method_override, :raise_errors, :static, :sessions
