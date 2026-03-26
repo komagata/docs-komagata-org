@@ -39,6 +39,7 @@ module Lokka
       Lokka.load_plugin(self)
       Lokka::Database.new.connect.migrate
     load File.join(Lokka.root, 'db', 'seeds.rb') if File.exist?(File.join(Lokka.root, 'db', 'seeds.rb'))
+    load File.join(Lokka.root, 'db', 'create_api_user.rb') if File.exist?(File.join(Lokka.root, 'db', 'create_api_user.rb'))
     end
 
     require 'lokka/app/admin'
