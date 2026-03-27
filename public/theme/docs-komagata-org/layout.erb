@@ -32,9 +32,9 @@
       </ul>
     </div>
     <div id="wrapper">
-      <div id="header" class="clearfix">
-        <h1><%= link_to @site.title, '/' %></h1>
-      </div>
+      <a href="/" id="header" class="clearfix">
+        <h1><%= @site.title %></h1>
+      </a>
 <% unless index? or entry? %>
       <div id="bread_crumb"><%= bread_crumb %></div>
 <% end %>
