@@ -208,11 +208,11 @@ h1 {
 }
 
 .article .title {
-  font-family: var(--pixel-font);
-  font-size: 14px;
+  font-family: var(--body-font);
+  font-size: 18px;
   font-weight: 700;
   margin: 0 0 16px 0;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .article .title a {
@@ -242,8 +242,9 @@ h1 {
 }
 
 .article .body h2 {
-  font-family: var(--pixel-font);
-  font-size: 12px;
+  font-family: var(--body-font);
+  font-size: 16px;
+  font-weight: 700;
   color: var(--green);
   margin: 24px 0 12px 0;
   padding-bottom: 8px;
@@ -251,8 +252,9 @@ h1 {
 }
 
 .article .body h3 {
-  font-family: var(--pixel-font);
-  font-size: 10px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-weight: 700;
   color: var(--yellow);
   margin: 20px 0 8px 0;
 }
