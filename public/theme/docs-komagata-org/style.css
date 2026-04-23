@@ -209,7 +209,7 @@ h1 {
 
 .article .title {
   font-family: var(--body-font);
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   margin: 0 0 16px 0;
   line-height: 1.6;
@@ -628,7 +628,7 @@ label.label {
   }
 
   .article .title {
-    font-size: 12px;
+    font-size: 18px;
   }
 
   .article .body {
