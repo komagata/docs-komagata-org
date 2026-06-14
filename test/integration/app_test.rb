@@ -50,6 +50,46 @@ class AppTest < LokkaTestCase
     Post.destroy_all
   end
 
+  def test_atom_feed_includes_first_entry_image_metadata
+    create(:post, body: '<p><img src="/files/first.png"><img src="/files/second.png"></p>')
+
+    get '/index.atom'
+    doc = Nokogiri::XML(last_response.body)
+    namespaces = {
+      'atom' => 'http://www.w3.org/2005/Atom',
+      'media' => 'http://search.yahoo.com/mrss/'
+    }
+    entry = doc.at_xpath('//atom:entry', namespaces)
+
+    assert_equal 'http://example.org/files/first.png',
+                 entry.at_xpath('atom:link[@rel="enclosure"]', namespaces)['href']
+    assert_equal 'image',
+                 entry.at_xpath('atom:link[@rel="enclosure"]', namespaces)['type']
+    assert_equal 'http://example.org/files/first.png',
+                 entry.at_xpath('media:content', namespaces)['url']
+    assert_equal 'image',
+                 entry.at_xpath('media:content', namespaces)['medium']
+  ensure
+    Post.destroy_all
+  end
+
+  def test_atom_feed_omits_image_metadata_when_entry_has_no_image
+    create(:post)
+
+    get '/index.atom'
+    doc = Nokogiri::XML(last_response.body)
+    namespaces = {
+      'atom' => 'http://www.w3.org/2005/Atom',
+      'media' => 'http://search.yahoo.com/mrss/'
+    }
+    entry = doc.at_xpath('//atom:entry', namespaces)
+
+    assert_nil entry.at_xpath('atom:link[@rel="enclosure"]', namespaces)
+    assert_nil entry.at_xpath('media:content', namespaces)
+  ensure
+    Post.destroy_all
+  end
+
   def test_entry_page_shows_site_title
     post_record = create(:post)
 
