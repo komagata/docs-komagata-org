@@ -5,6 +5,8 @@ service: lokka
 
 image: komagata/lokka
 
+deploy_timeout: 180
+
 servers:
   web:
     hosts:
