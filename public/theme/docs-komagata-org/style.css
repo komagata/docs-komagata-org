@@ -3,22 +3,22 @@
 
 :root {
   /* Picotron palette */
-  --bg: #1D1020;
-  --bg-alt: #29172E;
-  --card-bg: #2A1A30;
-  --card-border: #FF77A8;
-  --accent: #FF77A8;
-  --accent-hover: #FF004D;
-  --accent-light: rgba(255, 119, 168, 0.15);
-  --text: #FFF1E8;
-  --text-muted: #C2C3C7;
-  --border: #5F574F;
-  --code-bg: #1A0E1E;
-  --green: #00E436;
-  --blue: #29ADFF;
-  --yellow: #FFEC27;
-  --orange: #FFA300;
-  --purple: #83769C;
+  --bg: #FFFAFC;
+  --bg-alt: #FFF1F5;
+  --card-bg: #FFFFFF;
+  --card-border: #D84B7F;
+  --accent: #D6336C;
+  --accent-hover: #B42355;
+  --accent-light: rgba(214, 51, 108, 0.1);
+  --text: #2B2026;
+  --text-muted: #6F6268;
+  --border: #D8CBD0;
+  --code-bg: #F7EEF2;
+  --green: #16794A;
+  --blue: #1769AA;
+  --yellow: #9A6700;
+  --orange: #B45309;
+  --purple: #70566D;
   --radius: 0px;
   --pixel-border: 3px solid var(--card-border);
   --pixel-font: 'Press Start 2P', monospace;
@@ -59,7 +59,7 @@ img {
 
 /* ── Nav ── */
 #nav {
-  background: #0D0711;
+  background: #FFFFFF;
   border-bottom: 3px solid var(--accent);
   padding: 0;
   position: sticky;
@@ -158,7 +158,7 @@ img {
   aspect-ratio: 1248 / 832;
   width: 100%;
   position: relative;
-  box-shadow: 6px 6px 0px #0D0711;
+  box-shadow: 6px 6px 0px var(--border);
 }
 
 a#header {
@@ -195,7 +195,7 @@ h1 {
   background: var(--card-bg);
   border: var(--pixel-border);
   padding: 20px;
-  box-shadow: 4px 4px 0px #0D0711;
+  box-shadow: 4px 4px 0px var(--border);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -359,7 +359,7 @@ ul.pager li a {
   font-size: 10px;
   font-weight: 700;
   border: 3px solid var(--accent-hover);
-  box-shadow: 3px 3px 0px #0D0711;
+  box-shadow: 3px 3px 0px var(--border);
   transition: all 0.15s;
   text-transform: uppercase;
 }
@@ -368,7 +368,7 @@ ul.pager li a:hover {
   background: var(--accent-hover);
   color: #fff;
   transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px #0D0711;
+  box-shadow: 1px 1px 0px var(--border);
 }
 
 /* ── Code ── */
@@ -508,7 +508,7 @@ label.label {
   font-family: var(--pixel-font);
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 3px 3px 0px #0D0711;
+  box-shadow: 3px 3px 0px var(--border);
   transition: all 0.15s;
   text-transform: uppercase;
 }
@@ -517,7 +517,7 @@ label.label {
   background: var(--accent-hover);
   color: #fff;
   transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px #0D0711;
+  box-shadow: 1px 1px 0px var(--border);
 }
 
 /* ── Breadcrumb ── */
