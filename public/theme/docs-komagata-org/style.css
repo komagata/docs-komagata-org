@@ -195,6 +195,7 @@ h1 {
   background: var(--card-bg);
   border: var(--pixel-border);
   padding: 20px;
+  min-width: 0;
   box-shadow: 4px 4px 0px var(--border);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
@@ -230,6 +231,7 @@ h1 {
   line-height: 1.9;
   color: var(--text);
   margin-bottom: 20px;
+  overflow-wrap: anywhere;
 }
 
 .article .body p {
