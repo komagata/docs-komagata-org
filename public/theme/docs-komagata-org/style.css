@@ -339,38 +339,62 @@ h1 {
   margin-top: 32px;
 }
 
-ul.pager {
+.pager ul {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 6px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-ul.pager li {
+.pager li {
   margin: 0;
 }
 
-ul.pager li a {
-  display: inline-block;
-  padding: 10px 24px;
-  background: var(--accent);
-  color: var(--bg);
-  font-family: var(--pixel-font);
-  font-size: 10px;
+.pager a,
+.pager span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 44px;
+  padding: 6px 10px;
+  background: var(--card-bg);
+  color: var(--accent);
+  font-family: var(--body-font);
+  font-size: 14px;
   font-weight: 700;
-  border: 3px solid var(--accent-hover);
-  box-shadow: 3px 3px 0px var(--border);
+  border: 2px solid var(--border);
+  box-shadow: 2px 2px 0px var(--border);
   transition: all 0.15s;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
-ul.pager li a:hover {
+.pager a:hover {
   background: var(--accent-hover);
   color: #fff;
   transform: translate(2px, 2px);
   box-shadow: 1px 1px 0px var(--border);
+}
+
+.pager a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.pager [aria-current="page"] {
+  background: var(--accent);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+.pager [aria-disabled="true"] {
+  color: var(--text-muted);
+  background: var(--bg-alt);
+  box-shadow: none;
+  opacity: 0.5;
 }
 
 /* ── Code ── */
@@ -647,12 +671,14 @@ label.label {
     margin-left: 0;
   }
 
-  ul.pager {
-    flex-direction: column;
+  .pager ul {
+    gap: 3px;
   }
 
-  ul.pager li a {
-    display: block;
-    text-align: center;
+  .pager a,
+  .pager span {
+    min-width: 26px;
+    padding: 6px 4px;
+    font-size: 12px;
   }
 }

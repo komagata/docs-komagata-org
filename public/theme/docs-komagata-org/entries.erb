@@ -2,14 +2,36 @@
 <% @posts.each do |post| %>
   <%= partial :article, locals: {post: post} %>
 <% end %>
-  <div class="pager">
+<% if @posts.total_pages > 1 %>
+<%
+  current_page = @posts.current_page
+  total_pages = @posts.total_pages
+  first_page = [[current_page - 2, 1].max, [total_pages - 4, 1].max].min
+  last_page = [first_page + 4, total_pages].min
+  items = [
+    ['<<', current_page > 1 ? 1 : nil, '最初のページ'],
+    ['<', @posts.prev_page, '前のページ']
+  ]
+  items += (first_page..last_page).map { |page| [page, page, "#{page}ページ"] }
+  items += [
+    ['>', @posts.next_page, '次のページ'],
+    ['>>', current_page < total_pages ? total_pages : nil, '最後のページ']
+  ]
+%>
+  <nav class="pager" aria-label="ページ送り">
     <ul>
-<% if @posts.current_page > 1 %>
-      <li class="previous"><a href="?page=<%= @posts.current_page - 1 %>"><%= t('newer') %></a></li>
+<% items.each do |label, page, accessible_label| %>
+      <li>
+<% if label == current_page %>
+        <span aria-current="page" aria-label="<%= accessible_label %>"><%= label %></span>
+<% elsif page %>
+        <a href="?<%= Rack::Utils.build_nested_query(request.GET.merge('page' => page)) %>" aria-label="<%= accessible_label %>"><%= label %></a>
+<% else %>
+        <span aria-disabled="true" aria-label="<%= accessible_label %>"><%= label %></span>
 <% end %>
-<% if @posts.current_page < @posts.total_pages %>
-      <li class="next"><a href="?page=<%= @posts.current_page + 1 %>"><%= t('older') %></a></li>
+      </li>
 <% end %>
     </ul>
-  </div>
+  </nav>
+<% end %>
 </div>
