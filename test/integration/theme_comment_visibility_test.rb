@@ -24,8 +24,60 @@ class ThemeCommentVisibilityTest < LokkaTestCase
     comment_ids = comments.map {|comment| comment['id'] }
     assert_equal ["comment-#{approved_first.id}", "comment-#{approved_last.id}"], comment_ids
     assert_equal ['Approved first', 'Approved last'], comments.map {|comment| comment.at_css('.body').text }
+    assert_equal '2', page.at_css('.article .footer .comment a').text[/\((\d+)\)/, 1]
+    assert_equal "#{entry.link}#comment_form", page.at_css('.article .footer .comment a')['href']
     refute_includes last_response.body, 'Moderated private'
     refute_includes last_response.body, 'Spam private'
     assert page.at_css('form#comment_form')
+  end
+
+  def test_entry_page_shows_zero_when_only_unapproved_comments_exist
+    entry = create(:post)
+    create(:comment, entry:, status: Comment::MODERATED, body: 'Moderated private')
+    create(:spam_comment, entry:, body: 'Spam private')
+
+    get "/#{entry.id}"
+
+    page = Nokogiri::HTML(last_response.body)
+    link = page.at_css('.article .footer .comment a')
+
+    assert_equal '0', link.text[/\((\d+)\)/, 1]
+    assert_equal "#{entry.link}#comment_form", link['href']
+    refute_includes last_response.body, 'Moderated private'
+    refute_includes last_response.body, 'Spam private'
+  end
+
+  def test_entry_list_shows_approved_count_for_mixed_status_comments
+    entry = create(:post)
+    create(:comment, entry:, body: 'Approved first')
+    create(:comment, entry:, status: Comment::MODERATED, body: 'Moderated private')
+    create(:spam_comment, entry:, body: 'Spam private')
+    create(:comment, entry:, body: 'Approved last')
+
+    get '/'
+
+    page = Nokogiri::HTML(last_response.body)
+    link = page.at_css('.article .footer .comment a')
+
+    assert_equal '2', link.text[/\((\d+)\)/, 1]
+    assert_equal "#{entry.link}#comment_form", link['href']
+    refute_includes last_response.body, 'Moderated private'
+    refute_includes last_response.body, 'Spam private'
+  end
+
+  def test_entry_list_shows_zero_when_only_unapproved_comments_exist
+    entry = create(:post)
+    create(:comment, entry:, status: Comment::MODERATED, body: 'Moderated private')
+    create(:spam_comment, entry:, body: 'Spam private')
+
+    get '/'
+
+    page = Nokogiri::HTML(last_response.body)
+    link = page.at_css('.article .footer .comment a')
+
+    assert_equal '0', link.text[/\((\d+)\)/, 1]
+    assert_equal "#{entry.link}#comment_form", link['href']
+    refute_includes last_response.body, 'Moderated private'
+    refute_includes last_response.body, 'Spam private'
   end
 end

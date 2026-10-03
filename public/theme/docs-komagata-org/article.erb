@@ -6,7 +6,7 @@
   <div class="footer">
     <%= post.tags_to_html %>
     <div class="comment">
-      <%= link_to "#{t.comments} (#{post.comments.size})", "#{post.link}#comment_form" %>
+      <%= link_to "#{t.comments} (#{post.approved_comments.count})", "#{post.link}#comment_form" %>
     </div>
     <div class="created_at"><%= l post.created_at.to_time %></div>
 <% if logged_in? %>
