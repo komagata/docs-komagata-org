@@ -40,6 +40,17 @@ class AdminCommentsTest < LokkaTestCase
     assert_equal 1, Post(@post.id).comments.count
   end
 
+  def test_admin_can_explicitly_set_comment_status
+    post '/admin/comments', comment: attributes_for(:comment, entry_id: @post.id, status: Comment::MODERATED)
+    comment = Comment.unscoped.order(:id).last
+    assert_equal 302, last_response.status
+    assert_equal Comment::MODERATED, comment.status
+
+    put "/admin/comments/#{comment.id}", comment: { status: Comment::APPROVED }
+    assert_equal 302, last_response.status
+    assert_equal Comment::APPROVED, comment.reload.status
+  end
+
   def test_get_admin_comments_edit_shows_form
     get "/admin/comments/#{@comment.id}/edit"
     assert_match '<form', last_response.body

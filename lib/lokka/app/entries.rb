@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'lokka/comment_spam'
+
 module Lokka
   class App
     # index
@@ -159,14 +161,16 @@ module Lokka
       return 404 if !@entry || @entry.blank?
       return 404 if params[:check] != 'check'
 
-      @comment = Comment.new(params['comment'])
+      attributes = params['comment'].is_a?(Hash) ? params['comment'] : {}
+      @comment = Comment.new(attributes.slice('name', 'email', 'homepage', 'body'))
       @comment.entry = @entry
+      authenticated = current_user.is_a?(User)
+      @comment.status = authenticated ? Comment::APPROVED : Comment::MODERATED
 
-      @comment[:status] = if params['comment']['status']
-                            params['comment']['status']
-                          else # unless status value is overridden by plugins
-                            logged_in? ? Comment::APPROVED : Comment::MODERATED
-                          end
+      if !authenticated && Lokka::CommentSpam.spam?(name: @comment.name, homepage: @comment.homepage,
+                                                    body: @comment.body)
+        halt 422, 'Comment rejected: market advertising is not allowed.'
+      end
 
       if @comment.save
         redirect to(@entry.link)

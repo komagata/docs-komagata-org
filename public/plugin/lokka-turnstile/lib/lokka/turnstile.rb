@@ -39,20 +39,27 @@ module Lokka
     def turnstile_required?
       params['comment'].present? &&
         !request.path.start_with?('/admin/comments') &&
-        !logged_in? &&
+        !current_user.is_a?(User) &&
         turnstile_enabled?
     end
 
     def turnstile_valid?
-      response = Net::HTTP.post_form(
-        Turnstile::VERIFY_URI,
-        secret: turnstile_secret_key,
-        response: params['cf-turnstile-response'].to_s,
-        remoteip: request.ip
-      )
+      token = params['cf-turnstile-response'].to_s
+      return false if token.strip.empty?
+
+      client = Net::HTTP.new(Turnstile::VERIFY_URI.host, Turnstile::VERIFY_URI.port)
+      client.use_ssl = true
+      client.open_timeout = 3
+      client.read_timeout = 5
+      client.write_timeout = 5
+      verification = Net::HTTP::Post.new(Turnstile::VERIFY_URI)
+      verification.set_form_data(secret: turnstile_secret_key, response: token, remoteip: request.ip)
+      response = client.request(verification)
+      return false unless response.code == '200'
+
       result = JSON.parse(response.body)
-      result['success'] == true && result['hostname'] == request.host
-    rescue JSON::ParserError, OpenSSL::SSL::SSLError, SocketError, SystemCallError, Timeout::Error
+      result.is_a?(Hash) && result['success'] == true && result['hostname'] == request.host
+    rescue JSON::ParserError, OpenSSL::SSL::SSLError, SocketError, SystemCallError, Timeout::Error, EOFError
       false
     end
 

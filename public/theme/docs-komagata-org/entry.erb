@@ -8,7 +8,7 @@
 <% end %>
 <%= partial :article, locals: {post: @entry} %>
 <ul class="comments">
-<% @entry.comments.reverse.each do |comment| %>
+<% @entry.approved_comments.reverse.each do |comment| %>
   <li class="comment" id="comment-<%= comment.id %>">
     <div class="body"><%= hbr comment.body %></div>
     <div class="footer">
